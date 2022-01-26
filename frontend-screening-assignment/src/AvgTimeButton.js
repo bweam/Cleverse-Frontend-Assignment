@@ -10,6 +10,12 @@ function TimeButton(props) {
         const map = new Map();
         const airportMap = new Map();
 
+        const handleTime = (time) => { //function to handle unit of time on console display
+            if(time < 60) return time + " sec";
+            if(time < 3600) return time/60 + " min";
+            else return time/3600 + " hours";
+        }
+
         let newDisplay = [];
         data.forEach((item) => {
             if(map.has(item.passengerName) && map.get(item.passengerName)[0] != item.type) {
@@ -22,19 +28,22 @@ function TimeButton(props) {
         });
 
         airportMap.forEach((value, key) => {
-            let difference = 0;
+            let sumOfDifference = 0;
+            let count = 0;
             value.forEach((item) => {
-                difference += item[1] - item[0];
+                sumOfDifference += item[1] - item[0];
+                count++;
             });
-            newDisplay.push(key + " : " + difference + " sec");
+            newDisplay.push(key + " : " + handleTime(sumOfDifference/count) + "\n");
         })
         setDisplay(newDisplay);
-        // console.log(airportMap);
-        // console.log(map);
+
     }, [data]);
 
     const handleClick = () => {
-        console.log(display);
+        display.forEach((item) => {
+            console.log(item);
+        })
     }
 
     return <button onClick={handleClick}>Button</button>
