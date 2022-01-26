@@ -70,7 +70,7 @@ export default function Home() {
             onSubmit={handleAddLog}
           ></LogForm>
         </div>
-        <div style={{ margin: 16, width: "100%", display:"flex", flexDirection:"column", justifyContent:"center",alignItems:"center"}}>
+        <div className={styles.card} style={{ margin: 16, width: "100%", display:"flex", flexDirection:"column", justifyContent:"center",alignItems:"center"}}>
           <h2 style={{textAlign: "center"}}>Compute Time to Console</h2>
           <TimeButton data={logs}></TimeButton>
         </div>

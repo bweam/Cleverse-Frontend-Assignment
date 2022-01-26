@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
+import styles from "../styles/Home.module.css";
 
 function TimeButton(props) {
     const { data } = props;
@@ -46,7 +47,7 @@ function TimeButton(props) {
         })
     }
 
-    return <button onClick={handleClick}>Button</button>
+    return <button className={styles.btn} onClick={handleClick}>Button</button>
 }
 
 export default TimeButton;
