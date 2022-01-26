@@ -5,6 +5,7 @@ import styles from "../styles/Home.module.css";
 import { FlightLogService } from "../src/flight-log";
 import LogCard from "../src/LogCard";
 import LogForm from "../src/LogForm";
+import TimeButton from "../src/AvgTimeButton";
 // import BoardingPassCard from "../src/BoardingPassCard";
 
 const flightLogService = new FlightLogService();
@@ -14,8 +15,9 @@ export default function Home() {
 
   const handleAddLog = useCallback(
     (log) => {
-      logs.push(log);
-      setLogs(logs);
+      // console.log("handled add log");
+      // logs.push(log);
+      setLogs([...logs,log]);
     },
     [logs]
   );
@@ -26,6 +28,7 @@ export default function Home() {
       setLogs(data);
     };
 
+    //  console.log("fetched");
     fetch();
   }, []);
 
@@ -66,6 +69,10 @@ export default function Home() {
             type={"arrival"}
             onSubmit={handleAddLog}
           ></LogForm>
+        </div>
+        <div className={styles.card} style={{ margin: 16, width: "100%", display:"flex", flexDirection:"column", justifyContent:"center",alignItems:"center"}}>
+          <h2 style={{textAlign: "center"}}>Compute Time to Console</h2>
+          <TimeButton data={logs}></TimeButton>
         </div>
         {/* Render boarding pass here */}
         {/* {[].map((_, i) => ( */}
